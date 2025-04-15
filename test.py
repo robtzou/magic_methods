@@ -1,19 +1,23 @@
 from note import Note
 
-note = Note(1, "b")
-print(note)
+# note = Note(1)
+# print(note)
 
-bar1 = Note(8)
-bar2 = Note(3)
-print (bar1 << bar2)
+bar1 = Note(7, None)
+bar2 = Note(11, None)
+print (bar2 << bar1)
 
-bar = Note(4, 'b')
+bar1 = Note(11, None)
+bar2 = Note(7, None)
+print (bar2 << bar1)
 
-sub = bar - 1
-print(sub.pitch, sub.perspective)
+# bar = Note(4, 'b')
 
-add = bar + 1
-print(add.pitch, note.perspective)
+# sub = bar - 1
+# print(sub.position, sub.perspective)
 
-foo = ~bar
-print(foo.pitch,foo.perspective)
+# add = bar + 1
+# print(add.position, note.perspective)
+
+# foo = ~bar
+# print(foo.position,foo.perspective)
