@@ -49,8 +49,8 @@ class Note:
         repr   - displays a informal representation 'Db' 
 
     """ 
-    def __init__(self, pitch, perspective=None,):
-        self.pitch = pitch
+    def __init__(self, position, perspective=None,):
+        self.position = position
         self.perspective = perspective
         
     def __invert__(self):
@@ -61,32 +61,32 @@ class Note:
         else:
             inv_perspective = None
 
-        return Note(self.pitch, inv_perspective)
+        return Note(self.position, inv_perspective)
 
     def __add__(self,steps):
         if not isinstance(steps, int):
             raise TypeError("Only integers to Note objects.")
-        new_pitch = (self.pitch + steps) % 12
+        new_pitch = (self.position + steps) % 12
         return Note(new_pitch, self.perspective)
 
     def __sub__(self,steps):
         if not isinstance(steps, int):
             raise TypeError("Only integers to Note objects.")
-        new_pitch = (self.pitch - steps) % 12
+        new_pitch = (self.position - steps) % 12
         return Note(new_pitch, self.perspective)
 
     def __rshift__(self, other):
         if not isinstance(other, Note):
             raise TypeError("Can only shift against Note objects.")
-        return (self.pitch - other.pitch) % 12
+        return (self.position - other.position) % 12
 
     def __lshift__(self, other):
         if not isinstance(other, Note):
             raise TypeError("Can only shift against Note objects.")
-        return(self.pitch + other.pitch) % 12
+        return(self.position + other.position) % 12
 
     def __str__(self):
-        names = PITCHES[self.pitch]
+        names = PITCHES[self.position]
 
         # Get the informal name
         if len(names) == 1:
@@ -99,7 +99,7 @@ class Note:
             note_name = f"{names[0]}/{names[1]}"
 
         # Combine with formal info
-        return f"{note_name} [Note({self.pitch}, {repr(self.perspective)})]"
+        return f"{note_name} [Note({self.position}, {repr(self.perspective)})]"
 
     def __repr__(self):
-        return f"Note({self.pitch}, {repr(self.perspective)})"
+        return f"Note({self.position}, {repr(self.perspective)})"
